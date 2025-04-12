@@ -29,14 +29,15 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'name' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'email' => 'example@mail.com',
                 'password' => Hash::make("password"),
                 'email_verified_at' => now()
             ],
             [
                 'name' => 'Alan Kay',
                 'email' => 'alankay@gmail.com',
-                'password' => Hash::make("password")
+                'password' => Hash::make("password"),
+                'email_verified_at' => now()
             ]
         ];
 

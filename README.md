@@ -91,7 +91,7 @@
 
     _If the issue still persist, you can use credential below to sign in (please take notes that you have to seed the database first):_
 
-    email: `novalalthoff@gmail.com`
+    email: `example@mail.com`
 
     password: `password`
 
