@@ -2,8 +2,8 @@
     <div>
         <div class="logo-wrapper">
             <a href="{{ url('') }}">
-                {{-- <img class="img-fluid for-light" src="{{ asset('assets/images/favicon.png') }}" width="40%" alt="">
-                <img class="img-fluid for-dark" src="{{ asset('assets/images/favicon.png') }}" width="40%" alt=""> --}}
+                <img class="img-fluid for-light" src="{{ asset('favicon.ico') }}" width="40%" alt="">
+                <img class="img-fluid for-dark" src="{{ asset('favicon.ico') }}" width="40%" alt="">
             </a>
             <div class="back-btn"><i class="fa-solid fa-angle-left"></i></div>
             {{-- <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div> --}}

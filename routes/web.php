@@ -23,14 +23,9 @@ Route::post('/forgot-password', [AuthController::class, 'forgotProcess'])->name(
 
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
+    Route::get('/logout', [AuthController::class, 'logoutGet']);
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('/user', [UserController::class, 'index'])->name('user');
-
-    // Route::prefix('profile')->group(function() {
-    //     // Route::get('/{id}', [HomeController::class, 'show'])->name('profile.show');
-    //     Route::post('/{id}', [HomeController::class, 'update'])->name('profile.update');
-    //     // Route::post('/change-password/{id}', [HomeController::class, 'changePassProcess'])->name('profile.changePassProcess');
-    // });
 
     Route::post('/profile/{id}', [AuthController::class, 'changePassProcess'])->name('profile.update');
 

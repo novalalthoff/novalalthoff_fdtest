@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\VerificationCodeMail;
 use App\Models\User;
 use App\Models\VerificationCodeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth.login');
+        return view('auth.login', ['title' => "Sign In"]);
     }
 
     public function loginRules(Array $request)
@@ -49,11 +51,14 @@ class AuthController extends Controller
         }
 
         if (empty($user->email_verified_at)) {
+            $code = strval(rand(100000, 999999));
             VerificationCodeModel::create([
                 'user_id' => $user->id,
-                'code' => strval(rand(100000, 999999)),
+                'code' => $code,
                 'status' => 1
             ]);
+
+            // Mail::to($user->email)->send(new VerificationCodeMail($code));
 
             return response()->json(['status' => true, 'message' => "Now verify your email first!!", 'url' => "verify/".$user->id]);
         }
@@ -68,7 +73,7 @@ class AuthController extends Controller
 
     public function register()
     {
-        return view('auth.register');
+        return view('auth.register', ['title' => "Create Account"]);
     }
 
     public function registerRules(Array $request)
@@ -102,14 +107,16 @@ class AuthController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
+            $code = strval(rand(100000, 999999));
             $verif = VerificationCodeModel::create([
                 'user_id' => $user->id,
-                'code' => strval(rand(100000, 999999)),
+                'code' => $code,
                 'status' => 1
             ]);
 
             if ($user && $verif) {
                 DB::commit();
+                Mail::to($user->email)->send(new VerificationCodeMail($code));
                 return response()->json(['status' => true, 'message' => "Nice, now verify your account!", 'url' => "verify/".$user->id]);
             } else {
                 return response()->json(['status' => false, 'message' => "Failed to register!"]);
@@ -129,7 +136,8 @@ class AuthController extends Controller
         }
 
         return view('auth.verify', [
-            'user' => $user
+            'user' => $user,
+            'title' => "Account Verification"
         ]);
     }
 
@@ -205,14 +213,16 @@ class AuthController extends Controller
                 DB::table('verification_code')->where('user_id', $user->id)->where('status', 1)->update(['status' => 0]);
             }
 
+            $code = strval(rand(100000, 999999));
             $save = VerificationCodeModel::create([
                 'user_id' => $user->id,
-                'code' => strval(rand(100000, 999999)),
+                'code' => $code,
                 'status' => 1
             ]);
 
             if ($save) {
                 DB::commit();
+                Mail::to($user->email)->send(new VerificationCodeMail($code));
                 return redirect()->back();
             } else {
                 return response()->json(['status' => false, 'message' => "Failed to send verification code!"]);
@@ -225,7 +235,7 @@ class AuthController extends Controller
 
     public function forgot()
     {
-        return view('auth.forgot-password');
+        return view('auth.forgot-password', ['title' => "Forgot Password?"]);
     }
 
     public function forgotRules(Array $request)
@@ -331,6 +341,14 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->to('/');
+    }
+
+    public function logoutGet(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();

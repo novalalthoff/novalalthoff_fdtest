@@ -11,8 +11,13 @@ class HomeController extends Controller
     {
         $books = BookModel::latest()->get();
 
+        $title = null;
+        if (Auth::check()) {
+            $title = explode(" ", Auth::user()->name)[0] . "!";
+        }
+
         $data = [
-            'title' => "Book",
+            'title' => $title,
             'header' => "Book Management",
             'route' => "book",
             'books' => $books,

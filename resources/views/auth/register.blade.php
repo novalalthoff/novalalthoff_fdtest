@@ -39,7 +39,7 @@
 
                             <p class="mt-4 mb-0 text-center">
                                 Have an account?
-                                <a class="ms-2" href="{{ route('auth.login') }}">Sign in</a>
+                                <a class="ms-2" href="{{ route('login') }}">Sign in</a>
                             </p>
                         </form>
                     </div>

@@ -24,8 +24,8 @@
     <div class="header-logo-wrapper col-auto p-0">
         <div class="logo-wrapper">
             <a href="{{ url('/') }}">
-                <img class="img-fluid for-light" src="{{ asset('assets/images/favicon.png') }}" width="40%" alt="">
-                <img class="img-fluid for-dark" src="{{ asset('assets/images/favicon.png') }}" alt="">
+                <img class="img-fluid for-light" src="{{ asset('favicon.ico') }}" width="40%" alt="">
+                <img class="img-fluid for-dark" src="{{ asset('favicon.ico') }}" alt="">
             </a>
         </div>
         <div class="toggle-sidebar">
