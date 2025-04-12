@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\BookModel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function landing()
+    public function landing(Request $request)
     {
-        $books = BookModel::latest()->get();
+        $query = BookModel::query();
+
+        if ($request->filled('author')) $query->whereRaw('LOWER(author) LIKE ?', ['%' . strtolower($request->author) . '%']);
+        if ($request->filled('created_at')) $query->whereDate('created_at', $request->created_at);
+        if ($request->filled('rating')) $query->where('rating', $request->rating);
+
+        $books = $query->latest()->get();
 
         $title = null;
         if (Auth::check()) {

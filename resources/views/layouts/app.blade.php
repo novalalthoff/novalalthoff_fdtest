@@ -104,14 +104,16 @@
                                                     <input class="form-control" type="text" value="{{ Auth::user()->email }}" disabled>
                                                 </div>
 
-                                                <div class="mt-4 mb-4 row">
+                                                <p class="mt-4 fw-bold text-center">Change <span class="text-danger">Password</span>?</p>
+
+                                                <div class="row">
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">Old Password<span class="txt-danger">*</span></label>
+                                                        <label class="form-label">Old Password</label>
                                                         <input class="form-control" type="password" name="password" placeholder="___" required>
                                                     </div>
 
                                                     <div class="col-md-6">
-                                                        <label class="form-label fw-bold">New Password<span class="txt-danger">*</span></label>
+                                                        <label class="form-label">New Password</label>
                                                         <input class="form-control" type="password" name="password_new" placeholder="___" required>
                                                     </div>
                                                 </div>
