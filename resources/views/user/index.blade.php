@@ -31,6 +31,50 @@
     </div>
 
     <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-header pb-0 card-no-border">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <h5 class="card-title">Search Filter</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form id="filter-form" action="{{ route('user') }}" method="GET" class="row g-3 needs-validation">
+
+                            <div class="col-md-12">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" type="text" name="name" placeholder="___" value="{{ request('name') }}">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" type="text" name="email" placeholder="___" value="{{ request('email') }}">
+                            </div>
+
+                            <div class="col-md-12">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" name="is_verified">
+                                    <option value="">--Choose Status--</option>
+                                    <option value="0" {{ request('is_verified') == '0' ? "selected" : "" }}>Not Verified</option>
+                                    <option value="1" {{ request('is_verified') == '1' ? "selected" : "" }}>Verified</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <button class="btn btn-primary" id="filter-submit" type="submit">Submit</button>
+                                <button class="ms-3 btn btn-light" id="filter-reset" type="button">Reset</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header pb-0 card-no-border">
@@ -84,6 +128,11 @@
 <script>
     $(document).ready(function() {
         $('#main-table').DataTable();
+
+        $('#filter-reset').on('click', function() {
+            const form = document.getElementById('filter-form');
+            form.querySelectorAll('input, select').forEach(el => el.value = '');
+        });
     });
 </script>
 @endsection

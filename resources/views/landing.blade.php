@@ -44,17 +44,17 @@
                         <form id="filter-form" action="{{ route('landing') }}" method="GET" class="row g-3 needs-validation">
 
                             <div class="col-md-12">
-                                <label class="form-label" for="author">Author</label>
-                                <input class="form-control" id="author" type="text" name="author" placeholder="___" value="{{ request('author') }}">
+                                <label class="form-label">Author</label>
+                                <input class="form-control" type="text" name="author" placeholder="___" value="{{ request('author') }}">
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label" for="created_at">Uploaded date</label>
-                                <input class="form-control" id="created_at" type="date" name="created_at" placeholder="___" value="{{ request('created_at') }}">
+                                <label class="form-label">Uploaded date</label>
+                                <input class="form-control" type="date" name="created_at" placeholder="___" value="{{ request('created_at') }}">
                             </div>
 
                             <div class="col-md-12">
-                                <label class="form-label" for="rating">Rating</label>
+                                <label class="form-label">Rating</label>
                                 <select class="form-select" name="rating">
                                     <option value="">--Choose Rating--</option>
                                     <option value="1" {{ request('rating') == '1' ? "selected" : "" }}>1</option>
@@ -66,8 +66,8 @@
                             </div>
 
                             <div class="col-md-12">
-                                <button class="btn btn-primary" id="btnSearch" type="submit">Submit</button>
-                                <button class="ms-3 btn btn-light" type="reset">Reset</button>
+                                <button class="btn btn-primary" id="filter-submit" type="submit">Submit</button>
+                                <button class="ms-3 btn btn-light" id="filter-reset" type="button">Reset</button>
                             </div>
                         </form>
                     </div>
@@ -75,14 +75,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
 
     <div class="container-fluid">
         <div class="col-sm-12">
@@ -142,6 +134,11 @@
 <script>
     $(document).ready(function() {
         $('#main-table').DataTable();
+
+        $('#filter-reset').on('click', function() {
+            const form = document.getElementById('filter-form');
+            form.querySelectorAll('input, select').forEach(el => el.value = '');
+        });
     });
 </script>
 @endsection
