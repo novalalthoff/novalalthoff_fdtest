@@ -107,12 +107,12 @@
                                                 <div class="mt-4 mb-4 row">
                                                     <div class="col-md-6">
                                                         <label class="form-label fw-bold">Old Password<span class="txt-danger">*</span></label>
-                                                        <input class="form-control" type="password" name="password" placeholder="*********" required>
+                                                        <input class="form-control" type="password" name="password" placeholder="___" required>
                                                     </div>
 
                                                     <div class="col-md-6">
                                                         <label class="form-label fw-bold">New Password<span class="txt-danger">*</span></label>
-                                                        <input class="form-control" type="password" name="password_new" placeholder="*********" required>
+                                                        <input class="form-control" type="password" name="password_new" placeholder="___" required>
                                                     </div>
                                                 </div>
 

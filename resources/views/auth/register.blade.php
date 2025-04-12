@@ -19,18 +19,23 @@
                             <h4 class="mb-4">Create an Account</h4>
 
                             <div class="form-group">
-                                <label class="col-form-label">Email Address</label>
+                                <label class="col-form-label">Full Name <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="name" placeholder="Your Full Name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-form-label">Email Address <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" name="email" placeholder="example@gmail.com" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label">Password</label>
-                                <input class="form-control" type="password" name="password" placeholder="*********" required>
+                                <label class="col-form-label">Password <span class="text-danger">*</span></label>
+                                <input class="form-control" type="password" name="password" placeholder="___" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label">Confirm Password</label>
-                                <input class="form-control" type="password" name="password_confirmation" placeholder="*********" required>
+                                <label class="col-form-label">Confirm Password <span class="text-danger">*</span></label>
+                                <input class="form-control" type="password" name="password_confirmation" placeholder="___" required>
                             </div>
 
                             <div class="mt-4 col-12">

@@ -74,12 +74,17 @@
    php artisan migrate --seed
    ```
 
-6. **Compile and Run the Project**
+6. **Create Laravel Storage Link**
+   ```bash
+   php artisan storage:link
+   ```
+
+7. **Compile and Run the Project**
    ```bash
    composer run dev
    ```
 
-7. **Enjoy!**
+8. **Enjoy!**
    You can now open your browser and go to:
    ```
    http://localhost:8000

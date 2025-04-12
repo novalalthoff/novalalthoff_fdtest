@@ -20,13 +20,13 @@
                             <p>Enter your email & password to login</p>
 
                             <div class="form-group">
-                                <label class="col-form-label">Email Address</label>
+                                <label class="col-form-label">Email Address <span class="text-danger">*</span></label>
                                 <input class="form-control" type="email" name="email" placeholder="example@gmail.com" required>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label">Password</label>
-                                <input class="form-control" type="password" name="password" placeholder="*********" required>
+                                <label class="col-form-label">Password <span class="text-danger">*</span></label>
+                                <input class="form-control" type="password" name="password" placeholder="___" required>
                             </div>
 
                             <div class="mt-3 col-12 text-end">

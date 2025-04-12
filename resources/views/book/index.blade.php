@@ -110,9 +110,9 @@
                                 <tr>
                                     <th class="text-start" width="5%">#</th>
                                     <th>Author</th>
-                                    <th class="text-center">Thumbnail</th>
                                     <th>Title</th>
                                     <th class="text-center">Rating</th>
+                                    <th class="text-center">Thumbnail</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -121,13 +121,13 @@
                                     <tr>
                                         <td class="text-start">{{ $loop->iteration }}</td>
                                         <td>{{ $book->author }}</td>
+                                        <td>{{ $book->title }}</td>
+                                        <td class="text-center">{{ $book->rating }}</td>
                                         <td>
                                             @if (isset($book->thumbnail_path) && Storage::disk('public')->exists($book->thumbnail_path))
                                                 <img src="{{ asset('storage/' . $book->thumbnail_path) }}" class="img-thumbnail rounded mx-auto d-block" alt="{{ $book->title }}">
                                             @endif
                                         </td>
-                                        <td>{{ $book->title }}</td>
-                                        <td class="text-center">{{ $book->rating }}</td>
                                         <td>
                                             <ul class="action">
                                                 <li class="me-1">

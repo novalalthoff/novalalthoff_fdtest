@@ -19,13 +19,13 @@
                             <h4 class="mb-4">Verify your Account</h4>
 
                             <div class="form-group">
-                                <label class="col-form-label">Email Address</label>
+                                <label class="col-form-label">Email Address <small class="text-danger">(auto)</small></label>
                                 <input class="form-control" type="text" name="email" value="{{ $user->email }}" disabled>
                             </div>
 
                             <div class="form-group">
-                                <label class="col-form-label">Verification Code</label>
-                                <input class="form-control" type="text" name="code" placeholder="******" required>
+                                <label class="col-form-label">Verification Code <span class="text-danger">*</span></label>
+                                <input class="form-control" type="text" name="code" placeholder="Check your email✨" required>
                             </div>
 
                             <p class="mb-0">

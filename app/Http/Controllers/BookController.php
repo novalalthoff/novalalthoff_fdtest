@@ -149,7 +149,7 @@ class BookController extends Controller
             $book = BookModel::find($id);
             $destroy = $book->delete();
 
-            if (Storage::disk('public')->exists($book->thumbnail_path)) {
+            if (isset($book->thumbnail_path) && Storage::disk('public')->exists($book->thumbnail_path)) {
                 Storage::disk('public')->delete($book->thumbnail_path);
             }
 
