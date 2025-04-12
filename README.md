@@ -7,6 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+## 🚀 Getting Started
+
+### Follow these steps to set up the project locally:
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/your-project.git
+   cd your-project
+   ```
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
