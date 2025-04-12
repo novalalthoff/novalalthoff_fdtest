@@ -12,7 +12,7 @@
         <div class="page-title">
             <div class="row">
             <div class="col-sm-6">
-                <h3>Hi{{ isset($title) ? " ".$title : "" }}!</h3>
+                <h3>Explore Our Collection of Books!</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb">
@@ -35,7 +35,7 @@
                 <div class="card-header pb-0 card-no-border">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h5 class="card-title">Worldwide {{ $title }} List</h5>
+                            <h5 class="card-title">Uploaded Book by Users</h5>
                         </div>
                     </div>
                 </div>

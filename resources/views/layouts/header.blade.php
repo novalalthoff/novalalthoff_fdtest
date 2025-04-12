@@ -48,7 +48,7 @@
                         <li>
                             <a href="#!" data-bs-toggle="modal" data-bs-target="#edit-profile-modal">
                                 <i data-feather="user"></i>
-                                <span>Profile</span>
+                                <span>PROFILE</span>
                             </a>
                         </li>
                         <li>
@@ -65,9 +65,7 @@
             </ul>
         @else
             <div class="d-flex justify-content-end">
-                <a href="{{ url('login') }}" class="btn btn-primary f-w-500">
-                    LOG IN
-                </a>
+                <a href="{{ url('login') }}" class="btn btn-outline-primary"><i class="me-2 fa-solid fa-sign-in"></i>LOG IN</a>
             </div>
         @endif
     </div>
