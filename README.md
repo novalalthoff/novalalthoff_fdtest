@@ -74,7 +74,7 @@
    php artisan migrate --seed
    ```
 
-6. **Compile Frontend Assets**
+6. **Compile and Run the Project**
    ```bash
    composer run dev
    ```
@@ -85,7 +85,7 @@
    http://localhost:8000
    ```
 
-- Nb:
+- **Nb**:
 
     _Verify email feature still a bit buggy. If you facing an issue or stuck in verification page, you can check your OTP code on `verification_code` table._
 
