@@ -179,9 +179,14 @@ class AuthController extends Controller
 
             VerificationCodeModel::where('user_id', $user->id)->update(['status' => 0]);
 
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            Auth::login($user);
+
             if ($save) {
                 DB::commit();
-                return response()->json(['status' => true, 'message' => "Good job! Now enjoy.", 'url' => "login"]);
+                return response()->json(['status' => true, 'message' => "Good job! Now enjoy.", 'url' => "/"]);
             } else {
                 return response()->json(['status' => false, 'message' => "Verification failed!"]);
             }

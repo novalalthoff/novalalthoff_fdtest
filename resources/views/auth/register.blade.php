@@ -13,7 +13,7 @@
             <div class="login-card login-dark">
                 <div>
                     <div class="login-main">
-                        <form id="main-form" class="theme-form" action="{{ route('auth.loginProcess') }}" method="POST">
+                        <form id="main-form" class="theme-form" action="{{ route('auth.registerProcess') }}" method="POST">
                             @csrf
 
                             <h4 class="mb-4">Create an Account</h4>
