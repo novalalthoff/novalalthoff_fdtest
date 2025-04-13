@@ -12,6 +12,11 @@
         <div class="col-12 p-0">
             <div class="login-card login-dark">
                 <div>
+                    <div class="mb-4 col-12 text-center">
+                        <a href="{{ url('') }}">
+                            <img class="img-fluid for-light" src="{{ asset('favicon.png') }}" width="20%" alt="home">
+                        </a>
+                    </div>
                     <div class="login-main">
                         <form id="main-form" class="theme-form" action="{{ route('auth.verifyProcess', ['id' => $user->id]) }}" method="POST">
                             @csrf

@@ -12,6 +12,11 @@
         <div class="col-12 p-0">
             <div class="login-card login-dark">
                 <div>
+                    <div class="mb-4 col-12 text-center">
+                        <a href="{{ url('') }}">
+                            <img class="img-fluid for-light" src="{{ asset('favicon.png') }}" width="20%" alt="home">
+                        </a>
+                    </div>
                     <div class="login-main">
                         <form id="main-form" class="theme-form" action="{{ route('auth.registerProcess') }}" method="POST">
                             @csrf
@@ -25,7 +30,7 @@
 
                             <div class="form-group">
                                 <label class="col-form-label">Email Address <span class="text-danger">*</span></label>
-                                <input class="form-control" type="email" name="email" placeholder="example@gmail.com" required>
+                                <input class="form-control" type="email" name="email" placeholder="example@mail.com" required>
                             </div>
 
                             <div class="form-group">

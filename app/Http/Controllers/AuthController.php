@@ -214,7 +214,7 @@ class AuthController extends Controller
         DB::beginTransaction();
         try {
             $verif = VerificationCodeModel::where('user_id', $user->id)->where('status', 1)->get();
-            if (count($verif) > 0) {
+            if (isset($verif)) {
                 DB::table('verification_code')->where('user_id', $user->id)->where('status', 1)->update(['status' => 0]);
             }
 
