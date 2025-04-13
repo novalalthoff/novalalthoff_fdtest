@@ -112,7 +112,7 @@
                                     <th>Author</th>
                                     <th>Title</th>
                                     <th class="text-center">Rating</th>
-                                    <th class="text-center">Thumbnail</th>
+                                    <th class="text-center" width="10%">Thumbnail</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
