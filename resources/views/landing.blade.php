@@ -12,7 +12,7 @@
         <div class="page-title">
             <div class="row">
             <div class="col-sm-6">
-                <h3>Explore Our Collection of Books!</h3>
+                <h3>Explore Our Book Collection!</h3>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb">
@@ -82,7 +82,7 @@
                 <div class="card-header pb-0 card-no-border">
                     <div class="row">
                         <div class="col-sm-12">
-                            <h5 class="card-title">Uploaded Book by Users</h5>
+                            <h5 class="card-title">Book Collection by all Users</h5>
                         </div>
                     </div>
                 </div>

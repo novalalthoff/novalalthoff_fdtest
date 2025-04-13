@@ -330,7 +330,7 @@ class AuthController extends Controller
 
             if ($save) {
                 DB::commit();
-                return response()->json(['status' => true, 'message' => "Password successfully changed!", 'url' => ""]);
+                return response()->json(['status' => true, 'message' => "Password successfully changed!", 'url' => "/"]);
             } else {
                 return response()->json(['status' => false, 'message' => "Process failure!"]);
             }
