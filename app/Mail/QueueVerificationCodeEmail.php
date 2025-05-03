@@ -7,20 +7,21 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class VerificationCodeMail extends Mailable
+class QueueVerificationCodeEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $code;
+    public $subject, $code;
 
     public function __construct($code)
     {
+        $this->subject = '[novalalthoff_fdtest] Verification Code';
         $this->code = $code;
     }
 
     public function build()
     {
-        return $this->subject('[novalalthoff_fdtest] Verification Code')
+        return $this->subject($this->subject)
             ->view('emails.verification-code')
             ->with(['code' => $this->code]);
     }

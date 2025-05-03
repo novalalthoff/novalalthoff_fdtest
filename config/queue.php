@@ -34,6 +34,28 @@ return [
             'driver' => 'sync',
         ],
 
+        'rabbitmq' => [
+            'driver' => 'rabbitmq',
+            'queue' => env('RABBITMQ_QUEUE', 'default'),
+            'connection' => PhpAmqpLib\Connection\AMQPStreamConnection::class,
+            'hosts' => [
+                [
+                    'host' => env('RABBITMQ_HOST', '127.0.0.1'),
+                    'port' => env('RABBITMQ_PORT', 5672),
+                    'user' => env('RABBITMQ_USER', 'guest'),
+                    'password' => env('RABBITMQ_PASSWORD', 'guest'),
+                    'vhost' => env('RABBITMQ_VHOST', '/'),
+                ],
+            ],
+            'options' => [
+                'exchange' => [
+                    'name' => env('RABBITMQ_EXCHANGE_NAME'),
+                    'declare' => true,
+                    'type' => 'direct',
+                ],
+            ],
+        ],
+
         'database' => [
             'driver' => 'database',
             'connection' => env('DB_QUEUE_CONNECTION'),

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>[novalalthoff_fdtest] Account Verification Code</title>
+    <title>{{ $subject }}</title>
 </head>
 <body>
     <h2>Here's your code ✨</h2>

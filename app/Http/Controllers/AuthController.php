@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\VerificationCodeMail;
+use App\Jobs\SendEmailJob;
+use App\Jobs\SendVerificationCodeEmailJob;
 use App\Models\User;
 use App\Models\VerificationCodeModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -58,7 +58,7 @@ class AuthController extends Controller
                 'status' => 1
             ]);
 
-            // Mail::to($user->email)->send(new VerificationCodeMail($code));
+            SendVerificationCodeEmailJob::dispatch($user->email, $code);
 
             return response()->json(['status' => true, 'message' => "Now verify your email first!!", 'url' => "verify/".$user->id]);
         }
@@ -114,9 +114,10 @@ class AuthController extends Controller
                 'status' => 1
             ]);
 
+            SendVerificationCodeEmailJob::dispatch($user->email, $code);
+
             if ($user && $verif) {
                 DB::commit();
-                Mail::to($user->email)->send(new VerificationCodeMail($code));
                 return response()->json(['status' => true, 'message' => "Nice, now verify your account!", 'url' => "verify/".$user->id]);
             } else {
                 return response()->json(['status' => false, 'message' => "Failed to register!"]);
@@ -225,9 +226,10 @@ class AuthController extends Controller
                 'status' => 1
             ]);
 
+            SendVerificationCodeEmailJob::dispatch($user->email, $code);
+
             if ($save) {
                 DB::commit();
-                Mail::to($user->email)->send(new VerificationCodeMail($code));
                 return redirect()->back();
             } else {
                 return response()->json(['status' => false, 'message' => "Failed to send verification code!"]);
