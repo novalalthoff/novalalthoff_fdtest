@@ -37,6 +37,7 @@
 ### Follow these steps to set up the project locally:
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/novalalthoff/novalalthoff_fdtest.git
 
@@ -44,21 +45,26 @@
    ```
 
 2. **Install PHP Dependencies**
+
    ```bash
    composer install
    ```
 
 3. **Install JavaScript Dependencies**
+
    ```bash
    npm install
    ```
 
 4. **Copy and Configure Environment File**
+
    ```bash
    cp .env.example .env
    ```
 
-   Then update your `.env` file with your environment details, especially for the database:
+   Then update your `.env` file with your local settings:
+
+   ✅ Database Configuration
 
    ```env
    DB_CONNECTION=pgsql
@@ -69,30 +75,72 @@
    DB_PASSWORD=
    ```
 
+   ✅ Email Configuration
+
+   Update these with your own email credentials (default is Gmail):
+
+   ```env
+   MAIL_MAILER=smtp
+   MAIL_HOST=smtp.gmail.com
+   MAIL_PORT=587
+   MAIL_USERNAME=your_email@gmail.com
+   MAIL_PASSWORD=your_app_password
+   MAIL_ENCRYPTION=tls
+   MAIL_FROM_ADDRESS=your_email@gmail.com
+   MAIL_FROM_NAME="Noval FD Test"
+   ```
+
+   💡 Tip: If using Gmail, make sure you use an App Password instead of your regular password.
+
+   ✅ RabbitMQ Configuration
+
+   ```env
+   QUEUE_CONNECTION=rabbitmq
+
+   RABBITMQ_HOST=127.0.0.1
+   RABBITMQ_PORT=5672
+   RABBITMQ_USER=your_rabbitmq_user
+   RABBITMQ_PASSWORD=your_rabbitmq_password
+   RABBITMQ_VHOST=/
+   ```
+
 5. **Run Database Migration and Seed**
+
    ```bash
    php artisan migrate --seed
    ```
 
 6. **Create Laravel Storage Link**
+
    ```bash
    php artisan storage:link
    ```
 
-7. **Compile and Run the Project**
+7. **Start the Development Environment**
+
    ```bash
    composer run dev
    ```
 
+   This command runs multiple processes concurrently to streamline your local development:
+
+   - `php artisan serve` – starts the Laravel backend at http://127.0.0.1:8000
+   - `php artisan queue:listen --tries=1` – starts the queue listener (for handling email and other jobs)
+   - `npm run dev` – starts Vite for frontend asset hot reloading at http://localhost:5173
+
+   You do not need to run `php artisan queue:work` separately — it's already handled by `composer run dev`.
+
 8. **Enjoy!**
-   You can now open your browser and go to:
+
+   You're ready to go 🎉, now open your browser and go to:
+
    ```
    http://localhost:8000
    ```
 
 - **Nb**:
 
-    _Verify email feature still a bit buggy. If you facing an issue or stuck in verification page, you can check your OTP code on `verification_code` table._
+    _If you're facing an issue or stuck in verification page, you can manually check your OTP code on `verification_code` table._
 
     _If the issue still persist, you can use credential below to sign in (please take notes that you have to seed the database first):_
 
