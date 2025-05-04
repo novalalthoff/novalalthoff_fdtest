@@ -230,7 +230,7 @@ class AuthController extends Controller
 
             if ($save) {
                 DB::commit();
-                return redirect()->back();
+                return response()->json(['status' => true, 'message' => "Verification code has been sent, check your email! ✨"]);
             } else {
                 return response()->json(['status' => false, 'message' => "Failed to send verification code!"]);
             }

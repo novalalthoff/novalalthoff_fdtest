@@ -240,7 +240,7 @@
                 }
             });
         }
-    </script>\
+    </script>
 
     @if (Auth::check())
         <script>

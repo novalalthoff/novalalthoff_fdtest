@@ -34,9 +34,11 @@
                             </div>
 
                             <p class="mb-0">
-                                <a href="#!" id="resend-button" class="ms-2" type="button">
+                                <span id="loading-text" class="text-muted ms-2"></span>
+                                <a href="javascript:void(0);" id="resend-button" class="ms-2" style="display:none;" type="button">
                                     Resend code?
                                 </a>
+                                <span id="countdown-text" class="text-muted ms-2" style="display:none;"></span>
                             </p>
 
                             <div class="mt-3 col-12">
@@ -62,14 +64,58 @@
 
 @section('js-custom')
 <script>
-    $(document).ready(function() {
+    const RESEND_COOLDOWN_SECONDS = 60;
+    const STORAGE_KEY = 'resend_cooldown_expires_at';
+
+    function startCountdown(expiryTimestamp) {
+        const $resendBtn = $('#resend-button');
+        const $countdownText = $('#countdown-text');
+        const interval = setInterval(() => {
+            const now = Date.now();
+            const secondsLeft = Math.floor((expiryTimestamp - now) / 1000);
+            if (secondsLeft <= 0) {
+                clearInterval(interval);
+                localStorage.removeItem(STORAGE_KEY);
+                $countdownText.hide();
+                $resendBtn.show();
+            } else {
+                $countdownText.html(`<span class="text-info">Resend available in</span> ${secondsLeft}s`).show();
+                $resendBtn.hide();
+            }
+        }, 1000);
+    }
+
+    $(function () {
         $('#main-form').on('submit', function(e) {
             e.preventDefault();
             submitForm($(this), $('#submit-button'));
         });
-        $('#resend-button').on('click', function(e) {
+
+        const existingExpiry = localStorage.getItem(STORAGE_KEY);
+
+        const $loadingText = $('#loading-text');
+        let loadingTimeLeft = 3;
+        const loadingInterval = setInterval(() => {
+            loadingTimeLeft--;
+            if (loadingTimeLeft <= 0) {
+                clearInterval(loadingInterval);
+                if (existingExpiry && parseInt(existingExpiry) > Date.now()) {
+                    startCountdown(parseInt(existingExpiry));
+                } else {
+                    $('#resend-button').show();
+                }
+                $loadingText.hide();
+            } else {
+                $loadingText.html(`<span class="text-warning">Loading, please wait..</span> ${loadingTimeLeft}s`);
+            }
+        }, 1000);
+
+        $('#resend-button').on('click', function (e) {
             e.preventDefault();
-            document.getElementById('resend-code-form').submit();
+            const expiry = Date.now() + RESEND_COOLDOWN_SECONDS * 1000;
+            localStorage.setItem(STORAGE_KEY, expiry.toString());
+            submitForm($('#resend-code-form'), $(this));
+            startCountdown(expiry);
         });
     });
 </script>
