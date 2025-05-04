@@ -84,10 +84,10 @@
    MAIL_HOST=smtp.gmail.com
    MAIL_PORT=587
    MAIL_USERNAME=your_email@gmail.com
-   MAIL_PASSWORD=your_app_password
+   MAIL_PASSWORD=your_app_password  # Use App Password, NOT regular password
    MAIL_ENCRYPTION=tls
    MAIL_FROM_ADDRESS=your_email@gmail.com
-   MAIL_FROM_NAME="Noval FD Test"
+   MAIL_FROM_NAME="${APP_NAME}"
    ```
 
    💡 Tip: If using Gmail, make sure you use an App Password instead of your regular password.
