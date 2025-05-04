@@ -165,12 +165,6 @@ Laravel is a powerful PHP framework designed to make web development easy, expre
 
 ---
 
-## 🤝 Contributing
-
-Feel free to fork this project and submit pull requests. Contributions are always welcome!
-
----
-
 ## 🛡 License
 
 This project is open-source and licensed under the [MIT license](https://opensource.org/licenses/MIT).
